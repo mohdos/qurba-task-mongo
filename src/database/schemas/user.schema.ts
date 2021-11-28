@@ -5,7 +5,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 
 @Schema()
-export class User extends mongoose.Document {
+export class User extends mongoose.Document { // defining user schema
   @Prop({required: true})
   name: string;
 
@@ -14,11 +14,14 @@ export class User extends mongoose.Document {
 
   @Prop({validate: {
     validator: function(v) {
-        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
+        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v); // checks if email is valid using regex
     },
     message: "Please enter a valid email"
   }, required: true, trim: true})
   email: string;
+
+  @Prop({type: [mongoose.Schema.Types.ObjectId], ref: 'Restaurant'})
+  createdRestaurants: [mongoose.Schema.Types.ObjectId];
 
   @Prop({type: {
     type: String,

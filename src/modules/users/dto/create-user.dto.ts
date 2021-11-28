@@ -17,5 +17,5 @@ export class CreateUserDto {
     @IsObject()
     @ValidateNested()
     @Type(() => MongoLocation)
-    location: Object;
+    location: {coordinates: Array<Number>};
 }

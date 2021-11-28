@@ -3,10 +3,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 
-// export type RestaurantDocument = Restaurant & Document;
 
 @Schema()
-export class Restaurant {
+export class Restaurant extends mongoose.Document { // defining restaurant schema
   @Prop({required: true})
   name: string;
 
@@ -14,7 +13,7 @@ export class Restaurant {
   uniqueName: string;
 
   @Prop({type: String, required: true})
-  cuisines: string;
+  cuisine: string;
 
   @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'User'})
   createdBy: mongoose.Schema.Types.ObjectId;
@@ -31,44 +30,9 @@ export class Restaurant {
 
 }
 
-// const RestaurantSchema = new mongoose.Schema({
-//     name: {
-//         type: String,
-//         required: true,
-        
-//     },
-//     uniqueName: {
-//         type: String,
-//         unique: true,
-//         required: true
-//     },
-//     cuisine: {
-//         type: [String],
-//         required: true
-//     },
-//     createdBy: {
-//         type: mongoose.Schema.Types.ObjectId,
-//         ref: 'User'
-//     },
-//     location: {
-//         type: {
-//             type: String,
-//             enum: ['Point'],
-//             default: "Point"
-//         },
-//         coordinates: {
-//             type: [Number],
-//             required: true
-//         },
-//         required: true
-//     },
-// }, {timestamps: true, collection: "restaurants"});
-
 const RestaurantSchema = SchemaFactory.createForClass(Restaurant);
 
 RestaurantSchema.index({location: '2dsphere'});
 
 export {RestaurantSchema};
 
-// export const RestaurantSchema = SchemaFactory.createForClass(Restaurant);
-// export const Re

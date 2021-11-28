@@ -15,12 +15,13 @@ export class CreateRestaurantDto {
     uniqueName: string;
     
     @IsString()
+    @IsNotEmpty()
     cuisine: string;
 
     @IsObject()
     @ValidateNested()
     @Type(() => MongoLocation)
-    location: Object;
+    location: {coordinates: Array<Number>};
 
 }
 

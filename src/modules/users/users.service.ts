@@ -10,6 +10,13 @@ export class UsersService {
     
     constructor(private userRepository: UserRepository) {}
 
+    /**
+     * Creates a new user
+     * 
+     * @param createUserDto the user object to get created
+     * 
+     * @returns the created user object
+     */
     async createUser(createUserDto: CreateUserDto)
     {
         const user = await this.userRepository.createUser(createUserDto);
