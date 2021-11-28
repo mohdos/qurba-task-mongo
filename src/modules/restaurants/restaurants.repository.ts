@@ -2,7 +2,7 @@ import { ConflictException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
 import { vars } from "src/config/vars";
-import { RestaurantSchema } from "src/database/schemas/restaurant.model";
+import { RestaurantSchema } from "src/database/schemas/restaurant.schema";
 import { CreateRestaurantDto } from "./dto/create-restaurant.dto";
 import { getNearbyRestaurantsDto } from "./dto/get-nearby-restaurants.dto";
 import { GetRestaurantDto } from "./dto/get-restaurant.dto";

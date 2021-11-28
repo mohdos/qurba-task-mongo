@@ -3,7 +3,7 @@
 // import { model, Model, Schema } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
-import { Restaurant } from './restaurant.model';
+import { Restaurant } from './restaurant.schema';
 
 @Schema()
 export class User extends mongoose.Document { // defining user schema
