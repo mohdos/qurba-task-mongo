@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Header, Headers, Param, Post, Query, ValidationPipe } from '@nestjs/common';
+import { AuthDto } from 'src/dto/auth.dto';
 import { CreateRestaurantDto } from './dto/create-restaurant.dto';
 import { getNearbyRestaurantsDto } from './dto/get-nearby-restaurants.dto';
 import { GetRestaurantDto } from './dto/get-restaurant.dto';
@@ -18,9 +19,9 @@ export class RestaurantsController {
      * @returns the created restaurant
      */
     @Post()
-    createRestaurant(@Body() createRestaurantDto: CreateRestaurantDto)
+    createRestaurant(@Body() createRestaurantDto: CreateRestaurantDto, @Headers() headers: AuthDto)
     {
-        const restaurant = this.restaurantService.createRestaurant(createRestaurantDto);
+        const restaurant = this.restaurantService.createRestaurant(createRestaurantDto, headers.authorization);
         return restaurant;
     }
 

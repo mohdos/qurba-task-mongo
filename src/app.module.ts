@@ -7,7 +7,7 @@ import { UsersModule } from './modules/users/users.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: [`.env.${process.env.STAGE}`, '.env.example', '.env']
+      envFilePath: [`.env.${process.env.STAGE}`, '.env', '.env.example']
     }),
     DatabaseModule,
     RestaurantsModule,

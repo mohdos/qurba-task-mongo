@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsObject, IsOptional, IsString, ValidateIf } from "class-validator";
+import { Transform } from "class-transformer";
+import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, ValidateIf } from "class-validator";
 
 
 
@@ -6,14 +7,12 @@ export class GetRestaurantDto {
 
     @IsString()
     @IsNotEmpty()
-    @IsOptional()
-    @ValidateIf(obj => (obj.id && !obj.uniqueName) || (!obj.id && obj.uniqueName))
+    @ValidateIf(obj => !obj.uniqueName)
     id?: string;
 
     @IsString()
     @IsNotEmpty()
-    @IsOptional()
-    @ValidateIf(obj => (obj.id && !obj.uniqueName) || (!obj.id && obj.uniqueName))
+    @ValidateIf(obj => !obj.id)
     uniqueName?: string;
 
 }

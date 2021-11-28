@@ -3,6 +3,7 @@
 // import { model, Model, Schema } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
+import { Restaurant } from './restaurant.model';
 
 @Schema()
 export class User extends mongoose.Document { // defining user schema
@@ -19,9 +20,6 @@ export class User extends mongoose.Document { // defining user schema
     message: "Please enter a valid email"
   }, required: true, trim: true})
   email: string;
-
-  @Prop({type: [mongoose.Schema.Types.ObjectId], ref: 'Restaurant'})
-  createdRestaurants: [mongoose.Schema.Types.ObjectId];
 
   @Prop({type: {
     type: String,

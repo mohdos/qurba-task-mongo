@@ -18,15 +18,15 @@ export class RestaurantsRepository {
      * Creates a new restaurant
      * 
      * @param createRestaurantDto restaurant info object
+     * @param userId id of the user who is creating this restaurant
      * 
      * @returns the created restaurant
      */
-    async createRestaurant(createRestaurantDto: CreateRestaurantDto)
+    async createRestaurant(createRestaurantDto: CreateRestaurantDto, userId: string)
     {
-        const clashRestaurant = await this.getRestaurant({uniqueName: createRestaurantDto.uniqueName});
-        if (clashRestaurant) throw new ConflictException('A restaurant already exists with this unique name');
         const restaurant = new this.restaurantModel({
-            ...createRestaurantDto
+            ...createRestaurantDto,
+            createdBy: userId
         });
         const restaurantSaved = await restaurant.save();
         return restaurantSaved;

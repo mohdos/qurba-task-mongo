@@ -2,6 +2,7 @@
 // import { Document, Mongoose, Schema } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
+import { User } from './user.schema';
 
 
 @Schema()
@@ -15,8 +16,8 @@ export class Restaurant extends mongoose.Document { // defining restaurant schem
   @Prop({type: String, required: true})
   cuisine: string;
 
-  @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'User'})
-  createdBy: mongoose.Schema.Types.ObjectId;
+  @Prop({type: mongoose.Schema.Types.ObjectId, ref: 'users'})
+  createdBy: User;
 
   @Prop({type: {
     type: String,
