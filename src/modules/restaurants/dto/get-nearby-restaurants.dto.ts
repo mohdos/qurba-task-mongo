@@ -4,7 +4,7 @@ import { MongoLocation } from "src/dto/location.dto";
 
 
 
-export class getNearbyRestaurantsDto {
+export class GetNearbyRestaurantsDto {
 
     @Type(() => Number)
     @IsNumber()

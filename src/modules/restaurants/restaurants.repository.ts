@@ -4,7 +4,7 @@ import { Model } from "mongoose";
 import { vars } from "src/config/vars";
 import { RestaurantSchema } from "src/database/schemas/restaurant.schema";
 import { CreateRestaurantDto } from "./dto/create-restaurant.dto";
-import { getNearbyRestaurantsDto } from "./dto/get-nearby-restaurants.dto";
+import { GetNearbyRestaurantsDto } from "./dto/get-nearby-restaurants.dto";
 import { GetRestaurantDto } from "./dto/get-restaurant.dto";
 import { GetRestaurantFiltersDto } from "./dto/get-restaurants-filters.dto";
 
@@ -77,14 +77,13 @@ export class RestaurantsRepository {
      * 
      * @returns array of nearby restaurants
      */
-    async getNearbyRestaurants(getNearbyRestaurantsDto: getNearbyRestaurantsDto)
+    async getNearbyRestaurants(getNearbyRestaurantsDto: GetNearbyRestaurantsDto)
     {
         const restaurants = await this.restaurantModel.find({
             location:
             { 
                 $near:
                 {
-                    // $geometry: { type: "Point",  coordinates: [ getNearbyRestaurantsDto.location.coordinates[0], getNearbyRestaurantsDto.location.coordinates[1] ] },
                     $geometry: { type: "Point",  coordinates: [ getNearbyRestaurantsDto.lat, getNearbyRestaurantsDto.lng ] },
                     $minDistance: 0, // distance in metres
                     $maxDistance: vars.nearbyRestaurantsDistance * 1000 // distance in metres
